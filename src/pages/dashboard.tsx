@@ -10,42 +10,42 @@ const Chart = dynamic(() => import('react-apexcharts'), {
 })
 
 const options: ApexOptions = {
-    // chart: {
-    //     toolbar: {
-    //         show: false,
-    //     },
-    //     zoom: {
-    //         enabled: false
-    //     },
-    //     foreColor: theme.colors.gray[500]
-    // },
-    // grid: {
-    //     show: false,
-    // },
-    // dataLabels: {
-    //     enabled: false
-    // },
-    // tooltip: {
-    //     enabled: false
-    // },
-    // xaxis: {
-    //     type: 'datetime',
-    //     axisBorder: {
-    //         color: theme.colors.gray[600]
-    //     },
-    //     axisTicks: {
-    //         color: theme.colors.gray[600]
-    //     },
-    //     categories: [
-    //         '2021-03-18T00:00:00.000Z',
-    //         '2021-03-19T00:00:00.000Z',
-    //         '2021-03-20T00:00:00.000Z',
-    //         '2021-03-21T00:00:00.000Z',
-    //         '2021-03-22T00:00:00.000Z',
-    //         '2021-03-23T00:00:00.000Z',
-    //         '2021-03-24T00:00:00.000Z',
-    //     ]
-    // }
+    chart: {
+        toolbar: {
+            show: false,
+        },
+        zoom: {
+            enabled: false
+        },
+        foreColor: theme.colors.gray[500]
+    },
+    grid: {
+        show: false,
+    },
+    dataLabels: {
+        enabled: false
+    },
+    tooltip: {
+        enabled: false
+    },
+    xaxis: {
+        type: 'datetime',
+        axisBorder: {
+            color: theme.colors.gray[600]
+        },
+        axisTicks: {
+            color: theme.colors.gray[600]
+        },
+        categories: [
+            '2021-03-18T00:00:00.000Z',
+            '2021-03-19T00:00:00.000Z',
+            '2021-03-20T00:00:00.000Z',
+            '2021-03-21T00:00:00.000Z',
+            '2021-03-22T00:00:00.000Z',
+            '2021-03-23T00:00:00.000Z',
+            '2021-03-24T00:00:00.000Z',
+        ]
+    }
 } as const
 
 const series = [
@@ -61,6 +61,7 @@ export default function Dashboard() {
     // useEffect(() => {
     //     setChartState(true);
     // }, []);
+    
     return (
         <Flex direction='column' h='100vh'>
             <Header />
@@ -68,7 +69,7 @@ export default function Dashboard() {
             <Flex w='100%' my={6} maxWidth={1480} mx='auto' px='6'>
                 <Sidebar />
 
-                <SimpleGrid flex='1' gap='4' minChildWidth='320px' alignItems='flex-start'>
+                <SimpleGrid flex='1' gap='4' minChildWidth='320px'>
                     <Box
                         p='8'
                         bg='gray.800'
