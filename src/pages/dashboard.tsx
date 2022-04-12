@@ -45,6 +45,15 @@ const options: ApexOptions = {
             '2021-03-23T00:00:00.000Z',
             '2021-03-24T00:00:00.000Z',
         ]
+    },
+    fill: {
+        opacity: 0.3,
+        type: 'gradient',
+        gradient: {
+            shade: 'dark',
+            opacityFrom: 0.7,
+            opacityTo: .3,
+        }
     }
 } as const
 
@@ -56,22 +65,24 @@ const series = [
 ]
 
 export default function Dashboard() {
-    // const [chartState, setChartState] = useState<boolean>(false);
+    const [chartState, setChartState] = useState<boolean>(false);
 
-    // useEffect(() => {
-    //     setChartState(true);
-    // }, []);
+    useEffect(() => {
+        setChartState(true);
+    }, []);
     
     return (
-        <Flex direction='column' h='100vh'>
+        
+            <Flex direction='column' h='100vh'>
             <Header />
 
             <Flex w='100%' my={6} maxWidth={1480} mx='auto' px='6'>
                 <Sidebar />
 
-                <SimpleGrid flex='1' gap='4' minChildWidth='320px'>
+                {chartState && (
+                    <SimpleGrid flex='1' gap='4' minChildWidth='320px'>
                     <Box
-                        p='8'
+                        p={['6', '8']}
                         bg='gray.800'
                         borderRadius={8}
 
@@ -81,18 +92,22 @@ export default function Dashboard() {
                     </Box>
 
                     <Box
-                        p='8'
+                        p={['6', '8']}
                         bg='gray.800'
                         borderRadius={8}
 
                     >
                         <Text fontSize='lg' mb='4'>Taxa de Abertura</Text>
+                        <Chart options={options} series={series} type="area" height={160} />
                     </Box>
 
                 </SimpleGrid>
+                )}
+
             </Flex>
         </Flex>
 
+        
 
     )
 }

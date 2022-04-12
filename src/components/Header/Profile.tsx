@@ -1,0 +1,27 @@
+import { Avatar, Box, Flex, Text } from "@chakra-ui/react";
+
+interface ProfileProps {
+    showProfileData?: boolean
+}
+
+export function Profile({showProfileData = true}: ProfileProps) {
+    return (
+
+        <Flex
+            align='center'
+        >
+            {showProfileData && (     //  
+                <Box mr='4' textAlign='right'>
+                <Text>Abraão Borges</Text>
+                <Text color='gray.300' fontSize='small'>
+                    abraao.borges2396@gmail.com
+                </Text>
+            </Box>
+            )}
+
+            <Avatar size='md' name='Abraão Borges' src='https://github.com/abraaoborgesn.png' />
+
+        </Flex>
+
+    )
+}
