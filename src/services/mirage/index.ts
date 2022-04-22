@@ -1,0 +1,51 @@
+import { createServer, Factory, Model } from 'miragejs'
+import { faker } from '@faker-js/faker'
+
+type User = { 
+    name: string,
+    email: string,
+    created_at: string
+}
+
+export function makeServer() {
+    const server = createServer({
+        models: {
+            user: Model.extend<Partial<User>>({})
+        },
+
+        factories: {  // criando dados para colocar no server
+            user: Factory.extend({
+                name(i: number) {
+                    return `User ${i + 1}`
+                },
+                email() {
+                    return faker.internet.email().toLowerCase()
+                },
+                createdAt() {
+                    return faker.date.recent(10)
+                }
+            })
+        },
+
+        seeds(server) {
+            server.createList('user', 10)
+        },
+
+        routes() {
+            this.namespace = 'api'
+            this.timing = 750
+
+            this.get('/users', function (schema, request) {
+                const {page = 1, per_page= 10} = request.queryParams
+            })
+
+            this.post('/users')
+
+            this.namespace = ''
+            this.passthrough()  //faz com que todas rotas api passe por aqui, se não, segue em frente
+        }
+    })
+
+    return server
+}
+
